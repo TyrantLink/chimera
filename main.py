@@ -7,9 +7,13 @@ from discord.errors import CheckFailure
 from discord.ext.commands import Bot
 from datetime import datetime
 
-
-with open('nottoken') as file:
-	TOKEN = file.readlines(1)[0]
+try:
+	with open('nottoken') as file:
+		TOKEN = file.readlines(1)[0]
+except FileNotFoundError:
+	with open('nottoken','w') as file:
+		file.write('put your token in this file')
+	exit('please add your token to the nottoken file')
 
 class client(Bot):
 	def __init__(self) -> None:
